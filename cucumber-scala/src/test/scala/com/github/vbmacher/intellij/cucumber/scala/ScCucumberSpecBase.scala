@@ -8,25 +8,26 @@ import com.intellij.psi._
 import com.intellij.testFramework.UsefulTestCase
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import org.apache.log4j.Logger
-import org.junit.{After, Before}
-import org.scalatest.funspec.AnyFunSpecLike
+import org.scalatest.BeforeAndAfter
+import org.scalatest.funsuite.AnyFunSuiteLike
 import org.scalatest.matchers.should.Matchers
-import collection.JavaConverters._
 
-abstract class ScCucumberSpecBase extends BasePlatformTestCase with AnyFunSpecLike with Matchers {
+import scala.jdk.CollectionConverters._
+
+abstract class ScCucumberSpecBase extends BasePlatformTestCase with AnyFunSuiteLike with Matchers with BeforeAndAfter {
   protected lazy val LOG = Logger.getRootLogger
 
   val DESCRIPTOR = new LibraryLightProjectDescriptor(
-    //RemoteDependency("io.cucumber:cucumber-scala_2.12:6.1.2")
+    //RemoteDependency("io.cucumber:cucumber-scala_2.13:6.8.0")
   )
 
-  @Before
-  override def setUp(): Unit = {
+  before {
     super.setUp()
   }
 
-  @After
-  def shutdown(): Unit = super.tearDown()
+  after {
+    super.tearDown()
+  }
 
   override def getProjectDescriptor: LibraryLightProjectDescriptor = DESCRIPTOR
 

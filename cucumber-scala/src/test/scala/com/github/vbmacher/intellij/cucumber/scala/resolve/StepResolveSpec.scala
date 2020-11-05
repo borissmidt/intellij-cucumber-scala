@@ -1,41 +1,34 @@
 package com.github.vbmacher.intellij.cucumber.scala.resolve
 
-import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.scalatestplus.junit.JUnitRunner
 
-@RunWith(classOf[JUnit4])
+@RunWith(classOf[JUnitRunner])
 class StepResolveSpec extends StepResolveSpecBase {
   private val checkResolveDirect = singleResolve("resolveDirect/testcase.feature", "resolveDirect/StepDefinitions.scala") _
   private val checkResolveIndirect = singleResolve("resolveIndirect/testcase.feature", "resolveIndirect/StepDefinitions.scala") _
 
-  @Test
-  def testResolveSimple(): Unit = {
+  test("resolve simple") {
     checkResolveDirect("And nothing else")
   }
 
-  @Test
-  def testWithParameters(): Unit = {
+  test("resolve with parameters") {
     checkResolveDirect("I add 4 and 5")  // does not include "When", because test regex is within ^$
   }
 
-  @Test
-  def testScalaExpressionInName(): Unit = {
+  test("scala expression in name") {
     checkResolveDirect("When I div 10 by 2")
   }
 
-  @Test
-  def testResolveIndirect(): Unit = {
+  test("resolve indirect") {
     checkResolveIndirect("When I div 10 by 2")
   }
 
-  @Test
-  def testResolveDirectWithCucumberParameters(): Unit = {
+  test("resolve direct with cucumber parameters") {
     checkResolveDirect("Some 55 parameter with 3.14")
   }
 
-  @Test
-  def testResolveMultipleDefinitions(): Unit = {
+  test("resolve multiple definitions") {
     multiResolve(2,
       "resolveMultiple/testcase.feature",
       "resolveMultiple/StepDefs1.scala",

@@ -1,23 +1,20 @@
 package com.github.vbmacher.intellij.cucumber.scala.linemarker
 
 import com.github.vbmacher.intellij.cucumber.scala.ScCucumberSpecBase
-import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.scalatestplus.junit.JUnitRunner
 
-@RunWith(classOf[JUnit4])
+@RunWith(classOf[JUnitRunner])
 class StepLineMarkerSpec extends ScCucumberSpecBase {
 
-  @Test
-  def testLineMarker(): Unit = {
+  test("line marker positive") {
     loadTestCase("lineMarker/StepDefinition.scala")
     val lineMarkers = findLineMarkers()
 
     assert(lineMarkers.size === 1)
   }
 
-  @Test
-  def testLineMarkerNegative(): Unit = {
+  test("line marker negative") {
     loadTestCase("lineMarker/NotAStepDefinition.scala")
     val lineMarkers = findLineMarkers()
 

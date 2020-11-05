@@ -1,5 +1,5 @@
 plugins {
-    id "org.jetbrains.intellij" version "0.4.22"
+    id "org.jetbrains.intellij" version "0.6.1"
     id "scala"
 }
 
@@ -39,7 +39,7 @@ runIde {
 }
 
 patchPluginXml {
-    sinceBuild "202.6397"
+    sinceBuild "202.7660"
     untilBuild "202.*"
 }
 

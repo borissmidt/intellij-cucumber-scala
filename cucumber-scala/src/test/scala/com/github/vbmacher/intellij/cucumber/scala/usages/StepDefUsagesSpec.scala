@@ -1,15 +1,13 @@
 package com.github.vbmacher.intellij.cucumber.scala.usages
 
 import com.github.vbmacher.intellij.cucumber.scala.ScCucumberSpecBase
-import org.junit.Test
 import org.junit.runner.RunWith
-import org.junit.runners.JUnit4
+import org.scalatestplus.junit.JUnitRunner
 
-@RunWith(classOf[JUnit4])
+@RunWith(classOf[JUnitRunner])
 class StepDefUsagesSpec extends ScCucumberSpecBase {
 
-  @Test
-  def testFindUsages(): Unit = {
+  test("find usages") {
     loadTestCase("usages/StepDefinitions.scala", "usages/testcase1.feature", "usages/testcase2.feature")
     val usages = myFixture.testFindUsagesUsingAction(getTestDataPath + "/usages/StepDefinitions.scala")
     assert(usages.size() == 2)

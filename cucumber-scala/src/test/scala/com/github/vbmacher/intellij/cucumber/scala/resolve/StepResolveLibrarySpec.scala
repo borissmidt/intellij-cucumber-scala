@@ -1,8 +1,10 @@
 package com.github.vbmacher.intellij.cucumber.scala.resolve
 
 import com.github.vbmacher.intellij.cucumber.scala.{LibraryLightProjectDescriptor, LocalDependency}
-import org.junit.Test
+import org.junit.runner.RunWith
+import org.scalatestplus.junit.JUnitRunner
 
+@RunWith(classOf[JUnitRunner])
 class StepResolveLibrarySpec extends StepResolveSpecBase {
 
   override val DESCRIPTOR = new LibraryLightProjectDescriptor(
@@ -15,8 +17,7 @@ class StepResolveLibrarySpec extends StepResolveSpecBase {
 
   private val checkResolveDirect = singleResolve("stepsInLibrary/testcase.feature") _
 
-  @Test
-  def testResolveSimple(): Unit = {
+  test("resolve simple") {
     checkResolveDirect("I add 5 and 6")
   }
 }
